@@ -54,16 +54,18 @@ void new_file(char line[],int flag)
 	if(flag==0)
 	{
 		image I(line);
-		ofstream fout;
+		ofstream fout,fout2;
 		char name[50];
 		for(int i=0;i<6;i++)
 			name[i]=I.name[i];
 		name[6]='\0';
 		strcat(name,"txt");
 		fout.open(name);
-		fout<<0<<'\n';
-		fout<<I.x<<' '<<I.y<<' '<<I.w<<' '<<I.h<<'\n';
+		fout2.open("../train.txt",ios::app);
+		fout2<<"data/obj/"<<name<<'\n';
+		fout<<0<<' '<<float(I.x/1360.0)<<' '<<float(I.y/800.0)<<' '<<float(I.w/1360.0)<<' '<<float(I.h/800.0)<<'\n';
 		fout.close();
+		fout2.close();
 	}
 	else
 	{
@@ -75,7 +77,7 @@ void new_file(char line[],int flag)
 		name[6]='\0';	
 		strcat(name,"txt");
 		fout.open(name,ios::app);
-		fout<<I.x<<' '<<I.y<<' '<<I.w<<' '<<I.h<<'\n';
+		fout<<0<<' '<<float(I.x/1360.0)<<' '<<float(I.y/800.0)<<' '<<float(I.w/1360.0)<<' '<<float(I.h/800.0)<<'\n';
 		fout.close();
 	}
 }
